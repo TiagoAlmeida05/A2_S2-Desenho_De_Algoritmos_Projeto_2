@@ -3,19 +3,15 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include "functions.h"
 
 using namespace std;
 
-struct item{
-    int weight;
-    int profit;
-};
-
 void displayMenu();
 
-void loadTruck(int capacity, int pallets);
+void loadTruck(int& capacity, int& pallets);
 
-void loadPallets(vector<item> values);
+vector<item> loadPallets();
 
 
 int main()
@@ -27,34 +23,32 @@ int main()
         displayMenu();
         cout << "Enter your choice: ";
         cin >> choice;
-        int capacity, pallets = 0;
+        int capacity, pallets = 0; 
 
 
         switch (choice)
         {
-        case '1':{
-            loadTruck(capacity, pallets);
-            vector <item> values(pallets);
-            loadPallets(values);
-            break;            
-        }
+        case '1':
+            break;
         case '2':
             break;
         case '3':
-            break;
+        {
+   
+            loadTruck(capacity, pallets);
+            vector <item> values = loadPallets();
+            approximation(values, capacity, pallets);
+            break;  
+        }
         case '4':
             break;
         case '5':
-            break;
-        case '6':
-            break;
-        case '7':
             cout << "Exiting Program... \n";
             break;
         default:
             cout << "Invalid choice \n";
         }
-    } while (choice != '4');
+    } while (choice != '5');
 
     return 0;
 }
@@ -62,20 +56,19 @@ int main()
 void displayMenu()
 {
     cout << "\n=====  Pallet Packing Optimization Tool =====\n";
-    cout << "1. Load Trucks and Pallets from File\n";
-    cout << "2. Exhaustive (Brute-Force) Approach\n";
-    cout << "3. Dynamic Programming Approach\n";
-    cout << "5. Approximation Algorithms (Greedy Approach)\n";
-    cout << "6. Integer Linear Programming Algorithm (ILP)\n";
-    cout << "7. Exit\n";
+    cout << "1. Exhaustive (Brute-Force) Approach\n";
+    cout << "2. Dynamic Programming Approach\n";
+    cout << "3. Approximation Algorithms (Greedy Approach)\n";
+    cout << "4. Integer Linear Programming Algorithm (ILP)\n";
+    cout << "5. Exit\n";
 }
 
-void loadTruck(int capacity, int pallets)
+void loadTruck(int& capacity, int& pallets)
 {
     string filename;
     string line;
 
-    cout << "Enter File Name With Trunk:  \n";
+    cout << "Enter File Name With Truck:  \n";
     cin >> filename;
 
     ifstream inputfile1(filename);
@@ -98,13 +91,14 @@ void loadTruck(int capacity, int pallets)
     }
 }
 
-void loadPallets(vector<item> values)
+vector<item> loadPallets()
 {
+    vector <item> values;
     item pallet;
     string filename;
     string line;
 
-    cout << "Enter File Name Pallets:  \n";
+    cout << "Enter File Name with Pallets:  \n";
     cin >> filename;
 
     ifstream inputfile2(filename);
@@ -125,5 +119,6 @@ void loadPallets(vector<item> values)
         pallet.profit = stoi(prof);
         values.push_back(pallet);
     }
+    return values;
 }
 
