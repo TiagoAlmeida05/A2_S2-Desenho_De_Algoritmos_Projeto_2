@@ -7,7 +7,8 @@ struct item{
     int weight;
     int profit;
 };
-
-void approximation(vector<item> values, int capacity, int pallets);
+void bruteForce(const vector<item>& items, int capacity);
+void approximation(vector<item> values, int capacity);
+void dynamicProgramming(vector<item>& values, int capacity);
 
 #endif

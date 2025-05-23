@@ -36,16 +36,18 @@ int main()
             break;            
         }
         case '2':
+            bruteForce(values, capacity);
             break;
         case '3':
-        {
-            approximation(values, capacity, pallets);
-            break;  
-        }
+            dynamicProgramming(values, capacity);
+            break;
         case '4':
-            break;
+            approximation(values, capacity);
+            break;  
         case '5':
-            break;
+
+            break;            
+
         case '6':
             cout << "Exiting Program... \n";
             break;
