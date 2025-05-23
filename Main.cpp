@@ -15,7 +15,9 @@ vector<item> loadPallets();
 
 
 int main()
-{
+{        
+    int capacity, pallets = 0; 
+    vector <item> values;
     system("cls");
     char choice;
     do
@@ -23,32 +25,34 @@ int main()
         displayMenu();
         cout << "Enter your choice: ";
         cin >> choice;
-        int capacity, pallets = 0; 
+
 
 
         switch (choice)
         {
-        case '1':
-            break;
+        case '1':{
+            loadTruck(capacity, pallets);
+            values = loadPallets();
+            break;            
+        }
         case '2':
             break;
         case '3':
         {
-   
-            loadTruck(capacity, pallets);
-            vector <item> values = loadPallets();
             approximation(values, capacity, pallets);
             break;  
         }
         case '4':
             break;
         case '5':
+            break;
+        case '6':
             cout << "Exiting Program... \n";
             break;
         default:
             cout << "Invalid choice \n";
         }
-    } while (choice != '5');
+    } while (choice != '6');
 
     return 0;
 }
@@ -56,11 +60,12 @@ int main()
 void displayMenu()
 {
     cout << "\n=====  Pallet Packing Optimization Tool =====\n";
-    cout << "1. Exhaustive (Brute-Force) Approach\n";
-    cout << "2. Dynamic Programming Approach\n";
-    cout << "3. Approximation Algorithms (Greedy Approach)\n";
-    cout << "4. Integer Linear Programming Algorithm (ILP)\n";
-    cout << "5. Exit\n";
+    cout << "1. Select Truck and Pallets\n";
+    cout << "2. Exhaustive (Brute-Force) Approach\n";
+    cout << "3. Dynamic Programming Approach\n";
+    cout << "4. Approximation Algorithms (Greedy Approach)\n";
+    cout << "5. Integer Linear Programming Algorithm (ILP)\n";
+    cout << "6. Exit\n";
 }
 
 void loadTruck(int& capacity, int& pallets)
