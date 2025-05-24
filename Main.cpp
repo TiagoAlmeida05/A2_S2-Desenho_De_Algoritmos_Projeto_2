@@ -39,22 +39,25 @@ int main()
             bruteForce(values, capacity);
             break;
         case '3':
-            dynamicProgramming(values, capacity);
+            bruteForce(values, capacity);
             break;
         case '4':
+            dynamicProgramming(values, capacity);
+            break;
+        case '5':
             approximation(values, capacity);
             break;  
-        case '5':
-
+        case '6':
+            ilpAlgorithm(values, capacity);
             break;            
 
-        case '6':
+        case '7':
             cout << "Exiting Program... \n";
             break;
         default:
             cout << "Invalid choice \n";
         }
-    } while (choice != '6');
+    } while (choice != '7');
 
     return 0;
 }
@@ -64,10 +67,11 @@ void displayMenu()
     cout << "\n=====  Pallet Packing Optimization Tool =====\n";
     cout << "1. Select Truck and Pallets\n";
     cout << "2. Exhaustive (Brute-Force) Approach\n";
-    cout << "3. Dynamic Programming Approach\n";
-    cout << "4. Approximation Algorithms (Greedy Approach)\n";
-    cout << "5. Integer Linear Programming Algorithm (ILP)\n";
-    cout << "6. Exit\n";
+    cout << "3. Backtracking Approach\n";
+    cout << "4. Dynamic Programming Approach\n";
+    cout << "5. Approximation Algorithms (Greedy Approach)\n";
+    cout << "6. Integer Linear Programming Algorithm (ILP)\n";
+    cout << "7. Exit\n";
 }
 
 void loadTruck(int& capacity, int& pallets)
