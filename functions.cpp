@@ -3,11 +3,14 @@
 #include <algorithm>
 #include "functions.h"
 
-void bruteForce(const vector<item>& items, int capacity) {
+using namespace std;
+
+
+int bruteForce(const vector<item>& items, int capacity) {
     int n = items.size();
     if(n>31) {
         cout << "The number of pallets is too high for brute-force approach.\n";
-        return;
+        return 0;
     }
     int max_profit = 0;
     int best_weight = 0;
@@ -36,11 +39,13 @@ void bruteForce(const vector<item>& items, int capacity) {
             best_weight = current_weight;
             best_subset = current_subset;
         }
+        // Check for equal profit but better weight
         else if (current_weight <= capacity && current_profit == max_profit) {
             if (current_weight < best_weight) {
                 best_weight = current_weight;
                 best_subset = current_subset;
             }
+            //Check for equal weight but less pallets used
             else if (current_weight == best_weight) {
                 int counter1=0;
                 int counter2=0;
@@ -61,6 +66,7 @@ void bruteForce(const vector<item>& items, int capacity) {
                     best_weight = current_weight;
                     best_subset = current_subset;
                 }
+                //Check for better id
                 else if (counter1 == counter2)  {
                     if(val==true){
                         best_weight = current_weight;
@@ -89,9 +95,10 @@ void bruteForce(const vector<item>& items, int capacity) {
                  << " /Profit= " << items[i].profit << "\n";
         }
     }
+    return max_profit;
 }
 
-void approximation(vector<item> values, int capacity){
+int approximation(vector<item> values, int capacity){
     int W = 0, no_more = 0,index = 0, V = 0, sum = 0;
     int n = values.size();
     vector<int> usedPallets;
@@ -124,9 +131,10 @@ void approximation(vector<item> values, int capacity){
             << " : Weight= " << values[id].weight
             << " /Profit= " << values[id].profit << endl;
     }
+    return V;
 }
 
-void dynamicProgramming(vector<item>& values, int capacity) {
+int dynamicProgramming(vector<item>& values, int capacity) {
     int n = values.size();
     vector<vector<State>> dp(n+1, vector<State>(capacity+1));
 
@@ -164,11 +172,13 @@ void dynamicProgramming(vector<item>& values, int capacity) {
 
     for (int id : best.pallets) {
         cout << "Pallet " << id+1 << " : Weight= " << values[id].weight
-             << " /Profit= " << values[id].profit << endl;
+             
+        << " /Profit= " << values[id].profit << endl;
     }
+    return best.profit;
 }
 
-void ilpAlgorithm(vector<item>& values, int capacity) {
+int ilpAlgorithm(vector<item>& values, int capacity) {
     int n = values.size();
     cout << "\n=== Integer Linear Programming Algorithm ===\n";
     cout << "Total Pallets: " << n << "\n";
@@ -200,6 +210,7 @@ void ilpAlgorithm(vector<item>& values, int capacity) {
         cout << "Pallet " << idx + 1 << " : Weight= " << values[idx].weight
              << " /Profit= " << values[idx].profit << endl;
     }
+    return maxProfit;
 }
 
 bool cmp(int a, int b, const vector<item>& items) {
@@ -335,7 +346,7 @@ void backtrackingRecursion(size_t i, int current_weight, int current_profit,cons
     }
 }
 
-void backtracking(const vector<item>& items, int capacity) {
+int backtracking(const vector<item>& items, int capacity) {
     int n = items.size();
     int max_profit = 0;
     int best_weight = 0;
@@ -347,8 +358,12 @@ void backtracking(const vector<item>& items, int capacity) {
 
     backtrackingRecursion(0, 0, 0,items, capacity,max_profit, best_weight,current_subset, best_subset,nodes_visited);
 
+
     cout << "\nOptimal Solution Found:\n";
-    cout << "Nodes visited: " << nodes_visited << " (vs " << (1 << n) << " in brute-force)\n";
+    if(items.size() > 31) {
+        cout << "Nodes visited: " << nodes_visited << " (vs not calculated in brute-force)\n";
+    }
+    else cout << "Nodes visited: " << nodes_visited << " (vs " << (1 << n) << " in brute-force)\n";
     cout << "Weight Used: " << best_weight << " of " << capacity << "\n";
     cout << "Profit Obtained: " << max_profit << "\n";
     cout << "Pallets Used: ";
@@ -368,4 +383,5 @@ void backtracking(const vector<item>& items, int capacity) {
                  << " /Profit= " << items[i].profit << "\n";
         }
     }
+    return max_profit;
 }

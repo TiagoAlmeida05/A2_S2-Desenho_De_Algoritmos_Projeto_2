@@ -1,0 +1,22 @@
+Algorithm,Pallets,Capacity,Time(ms),Profit
+
+Brute Force,9,100,0.082735,29
+Backtracking,9,100,0.052218,29
+Dynamic Programming,9,100,0.140724,29
+Greedy,9,100,0.029585,29
+ILP,9,100,0.077475,29
+Brute Force,14,100,1.07927,32
+Backtracking,14,100,0.123241,32
+Dynamic Programming,14,100,0.152245,32
+Greedy,14,100,0.024105,28
+ILP,14,100,0.028884,32
+Brute Force,9,100,0.071705,40
+Backtracking,9,100,0.079519,40
+Dynamic Programming,9,100,0.122379,40
+Greedy,9,100,0.024967,40
+ILP,9,100,0.027261,40
+Brute Force,33,524,0.018254,0
+Backtracking,33,524,0.130264,161
+Dynamic Programming,33,524,2.27108,161
+Greedy,33,524,0.091482,158
+ILP,33,524,0.051256,161
