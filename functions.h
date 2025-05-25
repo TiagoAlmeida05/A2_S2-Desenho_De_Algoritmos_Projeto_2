@@ -1,3 +1,8 @@
+/**
+ * @file functions.h
+ * @brief Header file containing knapsack-related function declarations and data structures.
+ */
+
 #ifndef FUNCTIONS
 #define FUNCTIONS
 

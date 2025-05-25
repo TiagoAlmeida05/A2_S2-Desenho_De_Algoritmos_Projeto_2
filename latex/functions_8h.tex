@@ -1,0 +1,299 @@
+\doxysection{functions.\+h File Reference}
+\hypertarget{functions_8h}{}\label{functions_8h}\index{functions.h@{functions.h}}
+
+
+Header file containing knapsack-\/related function declarations and data structures.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structitem}{item}}
+\begin{DoxyCompactList}\small\item\em Represents a pallet with weight and profit. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_state}{State}}
+\begin{DoxyCompactList}\small\item\em Represents a state used in dynamic programming solution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{functions_8h_ae4150251169324ee07396d3794c8e901}{brute\+Force}} (const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&items, int capacity)
+\begin{DoxyCompactList}\small\item\em Solves pallet packing using brute-\/force approach. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8h_ad3186b516f4cb499cc1896b1b2065848}{approximation}} (vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ values, int capacity)
+\begin{DoxyCompactList}\small\item\em Approximates solution using a greedy approach based on profit-\/to-\/weight ratio. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8h_aac00e0e17698e68f960342ac4d2bbf2c}{dynamic\+Programming}} (vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&values, int capacity)
+\begin{DoxyCompactList}\small\item\em Uses dynamic programming to find optimal packing. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8h_ae5566cb4d1bf9d07f2d79a0035c345f9}{ilp\+Algorithm}} (vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&values, int capacity)
+\begin{DoxyCompactList}\small\item\em Solves pallet packing via Integer Linear Programming with branch and bound. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{functions_8h_aa9ea0e7c727d15dbf91d3419cfed228e}{cmp}} (int a, int b, const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&items)
+\begin{DoxyCompactList}\small\item\em Comparator for sorting pallets by profit-\/to-\/weight ratio. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{functions_8h_a6501eb2a46fef6f44c7ae39e45025a3f}{bound}} (int idx, int n, int curr\+Weight, int curr\+Profit, int W, const vector$<$ int $>$ \&order, const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&items)
+\begin{DoxyCompactList}\small\item\em Calculates upper bound on profit for branch and bound. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{functions_8h_a72651db6287c55df8c4035e03a4da8a4}{truck}} (int idx, int n, int curr\+Weight, int curr\+Profit, int W, const vector$<$ int $>$ \&order, const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&items, int \&max\+Profit, int \&min\+Weight, vector$<$ int $>$ \&current\+Selection, vector$<$ int $>$ \&best\+Selection)
+\begin{DoxyCompactList}\small\item\em Recursive helper for ILP branch and bound search. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{functions_8h_a486b99c1fe27a325a1010f20f20775a3}{is\+Better\+Selection}} (const vector$<$ int $>$ \&a, const vector$<$ int $>$ \&b)
+\begin{DoxyCompactList}\small\item\em Compares two selections of pallets to determine which is lexicographically better. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{functions_8h_a78dfad61d8c0f42b0b8a06e31e9b28d9}{backtracking\+Recursion}} (size\+\_\+t i, int current\+\_\+weight, int current\+\_\+profit, const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&items, int capacity, int \&max\+\_\+profit, int \&best\+\_\+weight, vector$<$ bool $>$ \&current\+\_\+subset, vector$<$ bool $>$ \&best\+\_\+subset, int \&nodes\+\_\+visited)
+\begin{DoxyCompactList}\small\item\em Recursive helper function for backtracking solution. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8h_aa0a4c799b86fea071e2fa22ad536503f}{backtracking}} (const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&items, int capacity)
+\begin{DoxyCompactList}\small\item\em Solves pallet packing using backtracking with pruning. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file containing knapsack-\/related function declarations and data structures. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{functions_8h_ad3186b516f4cb499cc1896b1b2065848}\index{functions.h@{functions.h}!approximation@{approximation}}
+\index{approximation@{approximation}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{approximation()}{approximation()}}
+{\footnotesize\ttfamily \label{functions_8h_ad3186b516f4cb499cc1896b1b2065848} 
+int approximation (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structitem}{item}} $>$}]{values}{, }\item[{int}]{capacity}{}\end{DoxyParamCaption})}
+
+
+
+Approximates solution using a greedy approach based on profit-\/to-\/weight ratio. 
+
+Sorts pallets by descending ratio and picks greedily until capacity is reached.
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & Vector of pallets. \\
+\hline
+{\em capacity} & Maximum capacity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Approximate profit. 
+\end{DoxyReturn}
+\Hypertarget{functions_8h_aa0a4c799b86fea071e2fa22ad536503f}\index{functions.h@{functions.h}!backtracking@{backtracking}}
+\index{backtracking@{backtracking}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{backtracking()}{backtracking()}}
+{\footnotesize\ttfamily \label{functions_8h_aa0a4c799b86fea071e2fa22ad536503f} 
+int backtracking (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&}]{items}{, }\item[{int}]{capacity}{}\end{DoxyParamCaption})}
+
+
+
+Solves pallet packing using backtracking with pruning. 
+
+Provides optimal solution by exploring subsets and pruning suboptimal branches.
+
+
+\begin{DoxyParams}{Parameters}
+{\em items} & Vector of pallets. \\
+\hline
+{\em capacity} & Maximum capacity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Maximum profit. 
+\end{DoxyReturn}
+\Hypertarget{functions_8h_a78dfad61d8c0f42b0b8a06e31e9b28d9}\index{functions.h@{functions.h}!backtrackingRecursion@{backtrackingRecursion}}
+\index{backtrackingRecursion@{backtrackingRecursion}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{backtrackingRecursion()}{backtrackingRecursion()}}
+{\footnotesize\ttfamily \label{functions_8h_a78dfad61d8c0f42b0b8a06e31e9b28d9} 
+void backtracking\+Recursion (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{, }\item[{int}]{current\+\_\+weight}{, }\item[{int}]{current\+\_\+profit}{, }\item[{const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&}]{items}{, }\item[{int}]{capacity}{, }\item[{int \&}]{max\+\_\+profit}{, }\item[{int \&}]{best\+\_\+weight}{, }\item[{vector$<$ bool $>$ \&}]{current\+\_\+subset}{, }\item[{vector$<$ bool $>$ \&}]{best\+\_\+subset}{, }\item[{int \&}]{nodes\+\_\+visited}{}\end{DoxyParamCaption})}
+
+
+
+Recursive helper function for backtracking solution. 
+
+Explores subsets recursively with pruning to find optimal profit.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Current pallet index. \\
+\hline
+{\em current\+\_\+weight} & Current total weight. \\
+\hline
+{\em current\+\_\+profit} & Current total profit. \\
+\hline
+{\em items} & Vector of pallets. \\
+\hline
+{\em capacity} & Maximum capacity. \\
+\hline
+{\em max\+\_\+profit} & Reference to max profit found. \\
+\hline
+{\em best\+\_\+weight} & Reference to best weight for max profit. \\
+\hline
+{\em current\+\_\+subset} & Current pallet selection. \\
+\hline
+{\em best\+\_\+subset} & Best pallet selection. \\
+\hline
+{\em nodes\+\_\+visited} & Counter for nodes visited during recursion. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{functions_8h_a6501eb2a46fef6f44c7ae39e45025a3f}\index{functions.h@{functions.h}!bound@{bound}}
+\index{bound@{bound}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{bound()}{bound()}}
+{\footnotesize\ttfamily \label{functions_8h_a6501eb2a46fef6f44c7ae39e45025a3f} 
+double bound (\begin{DoxyParamCaption}\item[{int}]{idx}{, }\item[{int}]{n}{, }\item[{int}]{curr\+Weight}{, }\item[{int}]{curr\+Profit}{, }\item[{int}]{W}{, }\item[{const vector$<$ int $>$ \&}]{order}{, }\item[{const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&}]{items}{}\end{DoxyParamCaption})}
+
+
+
+Calculates upper bound on profit for branch and bound. 
+
+Uses fractional knapsack idea to estimate max profit from current index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & Current index in ordered pallets. \\
+\hline
+{\em n} & Total number of pallets. \\
+\hline
+{\em curr\+Weight} & Current total weight. \\
+\hline
+{\em curr\+Profit} & Current total profit. \\
+\hline
+{\em W} & Maximum capacity. \\
+\hline
+{\em order} & Ordering of pallets. \\
+\hline
+{\em items} & Vector of pallets. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double Upper bound estimate of profit. 
+\end{DoxyReturn}
+\Hypertarget{functions_8h_ae4150251169324ee07396d3794c8e901}\index{functions.h@{functions.h}!bruteForce@{bruteForce}}
+\index{bruteForce@{bruteForce}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{bruteForce()}{bruteForce()}}
+{\footnotesize\ttfamily \label{functions_8h_ae4150251169324ee07396d3794c8e901} 
+int brute\+Force (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&}]{items}{, }\item[{int}]{capacity}{}\end{DoxyParamCaption})}
+
+
+
+Solves pallet packing using brute-\/force approach. 
+
+Enumerates all subsets of pallets to find the optimal profit without exceeding capacity. Limits input size to 31 pallets to avoid excessive computation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em items} & Vector of pallets (weight and profit). \\
+\hline
+{\em capacity} & Maximum weight capacity of the truck. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Maximum profit achievable. 
+\end{DoxyReturn}
+\Hypertarget{functions_8h_aa9ea0e7c727d15dbf91d3419cfed228e}\index{functions.h@{functions.h}!cmp@{cmp}}
+\index{cmp@{cmp}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{cmp()}{cmp()}}
+{\footnotesize\ttfamily \label{functions_8h_aa9ea0e7c727d15dbf91d3419cfed228e} 
+bool cmp (\begin{DoxyParamCaption}\item[{int}]{a}{, }\item[{int}]{b}{, }\item[{const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&}]{items}{}\end{DoxyParamCaption})}
+
+
+
+Comparator for sorting pallets by profit-\/to-\/weight ratio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Index of first pallet. \\
+\hline
+{\em b} & Index of second pallet. \\
+\hline
+{\em items} & Vector of pallets. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if pallet a has higher ratio or if equal, smaller index. 
+\end{DoxyReturn}
+\Hypertarget{functions_8h_aac00e0e17698e68f960342ac4d2bbf2c}\index{functions.h@{functions.h}!dynamicProgramming@{dynamicProgramming}}
+\index{dynamicProgramming@{dynamicProgramming}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{dynamicProgramming()}{dynamicProgramming()}}
+{\footnotesize\ttfamily \label{functions_8h_aac00e0e17698e68f960342ac4d2bbf2c} 
+int dynamic\+Programming (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&}]{values}{, }\item[{int}]{capacity}{}\end{DoxyParamCaption})}
+
+
+
+Uses dynamic programming to find optimal packing. 
+
+Constructs a DP table with States storing profit, weight, and pallets used.
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & Vector of pallets. \\
+\hline
+{\em capacity} & Maximum capacity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Optimal profit. 
+\end{DoxyReturn}
+\Hypertarget{functions_8h_ae5566cb4d1bf9d07f2d79a0035c345f9}\index{functions.h@{functions.h}!ilpAlgorithm@{ilpAlgorithm}}
+\index{ilpAlgorithm@{ilpAlgorithm}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{ilpAlgorithm()}{ilpAlgorithm()}}
+{\footnotesize\ttfamily \label{functions_8h_ae5566cb4d1bf9d07f2d79a0035c345f9} 
+int ilp\+Algorithm (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&}]{values}{, }\item[{int}]{capacity}{}\end{DoxyParamCaption})}
+
+
+
+Solves pallet packing via Integer Linear Programming with branch and bound. 
+
+Uses recursive search with bounding to prune suboptimal branches.
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & Vector of pallets. \\
+\hline
+{\em capacity} & Maximum capacity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Optimal profit. 
+\end{DoxyReturn}
+\Hypertarget{functions_8h_a486b99c1fe27a325a1010f20f20775a3}\index{functions.h@{functions.h}!isBetterSelection@{isBetterSelection}}
+\index{isBetterSelection@{isBetterSelection}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{isBetterSelection()}{isBetterSelection()}}
+{\footnotesize\ttfamily \label{functions_8h_a486b99c1fe27a325a1010f20f20775a3} 
+bool is\+Better\+Selection (\begin{DoxyParamCaption}\item[{const vector$<$ int $>$ \&}]{a}{, }\item[{const vector$<$ int $>$ \&}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Compares two selections of pallets to determine which is lexicographically better. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & First selection. \\
+\hline
+{\em b} & Second selection. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a is lexicographically less than b. 
+\end{DoxyReturn}
+\Hypertarget{functions_8h_a72651db6287c55df8c4035e03a4da8a4}\index{functions.h@{functions.h}!truck@{truck}}
+\index{truck@{truck}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{truck()}{truck()}}
+{\footnotesize\ttfamily \label{functions_8h_a72651db6287c55df8c4035e03a4da8a4} 
+void truck (\begin{DoxyParamCaption}\item[{int}]{idx}{, }\item[{int}]{n}{, }\item[{int}]{curr\+Weight}{, }\item[{int}]{curr\+Profit}{, }\item[{int}]{W}{, }\item[{const vector$<$ int $>$ \&}]{order}{, }\item[{const vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \&}]{items}{, }\item[{int \&}]{max\+Profit}{, }\item[{int \&}]{min\+Weight}{, }\item[{vector$<$ int $>$ \&}]{current\+Selection}{, }\item[{vector$<$ int $>$ \&}]{best\+Selection}{}\end{DoxyParamCaption})}
+
+
+
+Recursive helper for ILP branch and bound search. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & Current index in pallets. \\
+\hline
+{\em n} & Total pallets count. \\
+\hline
+{\em curr\+Weight} & Current weight. \\
+\hline
+{\em curr\+Profit} & Current profit. \\
+\hline
+{\em W} & Maximum capacity. \\
+\hline
+{\em order} & Sorted order of pallets. \\
+\hline
+{\em items} & Vector of pallets. \\
+\hline
+{\em max\+Profit} & Reference to max profit found. \\
+\hline
+{\em min\+Weight} & Reference to minimum weight for max profit. \\
+\hline
+{\em current\+Selection} & Current pallets selected. \\
+\hline
+{\em best\+Selection} & Best pallets selected. \\
+\hline
+\end{DoxyParams}

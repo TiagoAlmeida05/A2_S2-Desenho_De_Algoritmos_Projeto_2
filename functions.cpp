@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 int bruteForce(const vector<item>& items, int capacity) {
     int n = items.size();
     if(n>31) {

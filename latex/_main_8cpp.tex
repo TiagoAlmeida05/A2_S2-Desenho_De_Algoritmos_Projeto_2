@@ -1,0 +1,107 @@
+\doxysection{Main.\+cpp File Reference}
+\hypertarget{_main_8cpp}{}\label{_main_8cpp}\index{Main.cpp@{Main.cpp}}
+
+
+Main application file for the Pallet Packing Optimization Tool.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include "{}functions.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_main_8cpp_a59c2926dd9b0968badf463aaf4f91422}\label{_main_8cpp_a59c2926dd9b0968badf463aaf4f91422} 
+void {\bfseries display\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Displays the main menu options. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_main_8cpp_aee607ebd135e90dca509238906be6acc}{load\+Truck}} (int \&capacity, int \&pallets)
+\item 
+vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ \mbox{\hyperlink{_main_8cpp_ac88243a94bfaabff9c8cbaf53d0d503a}{load\+Pallets}} ()
+\item 
+void \mbox{\hyperlink{_main_8cpp_a3f7e44a7fb2959fb3b6fb64ce2013f8f}{log\+Result}} (const string \&algo, int pallets, int capacity, double time\+\_\+ms, int profit)
+\begin{DoxyCompactList}\small\item\em Logs the result of an algorithm\textquotesingle{}s execution to a CSV file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Main driver function for the Pallet Packing Optimization Tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main application file for the Pallet Packing Optimization Tool. 
+
+This program allows users to load truck and pallet data from files and apply various optimization algorithms to maximize profit while respecting truck capacity constraints. It benchmarks each algorithm’s execution time and logs results into a CSV file. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_main_8cpp_ac88243a94bfaabff9c8cbaf53d0d503a}\index{Main.cpp@{Main.cpp}!loadPallets@{loadPallets}}
+\index{loadPallets@{loadPallets}!Main.cpp@{Main.cpp}}
+\doxysubsubsection{\texorpdfstring{loadPallets()}{loadPallets()}}
+{\footnotesize\ttfamily \label{_main_8cpp_ac88243a94bfaabff9c8cbaf53d0d503a} 
+vector$<$ \mbox{\hyperlink{structitem}{item}} $>$ load\+Pallets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Loads pallet weight and profit data from a CSV file. \begin{DoxyReturn}{Returns}
+Vector of {\ttfamily item} structures representing the loaded pallets. 
+\end{DoxyReturn}
+\Hypertarget{_main_8cpp_aee607ebd135e90dca509238906be6acc}\index{Main.cpp@{Main.cpp}!loadTruck@{loadTruck}}
+\index{loadTruck@{loadTruck}!Main.cpp@{Main.cpp}}
+\doxysubsubsection{\texorpdfstring{loadTruck()}{loadTruck()}}
+{\footnotesize\ttfamily \label{_main_8cpp_aee607ebd135e90dca509238906be6acc} 
+void load\+Truck (\begin{DoxyParamCaption}\item[{int \&}]{capacity}{, }\item[{int \&}]{pallets}{}\end{DoxyParamCaption})}
+
+Loads truck capacity and number of pallets from a CSV file. 
+\begin{DoxyParams}{Parameters}
+{\em capacity} & Reference to store the truck\textquotesingle{}s capacity. \\
+\hline
+{\em pallets} & Reference to store the number of available pallets. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_main_8cpp_a3f7e44a7fb2959fb3b6fb64ce2013f8f}\index{Main.cpp@{Main.cpp}!logResult@{logResult}}
+\index{logResult@{logResult}!Main.cpp@{Main.cpp}}
+\doxysubsubsection{\texorpdfstring{logResult()}{logResult()}}
+{\footnotesize\ttfamily \label{_main_8cpp_a3f7e44a7fb2959fb3b6fb64ce2013f8f} 
+void log\+Result (\begin{DoxyParamCaption}\item[{const string \&}]{algo}{, }\item[{int}]{pallets}{, }\item[{int}]{capacity}{, }\item[{double}]{time\+\_\+ms}{, }\item[{int}]{profit}{}\end{DoxyParamCaption})}
+
+
+
+Logs the result of an algorithm\textquotesingle{}s execution to a CSV file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algo} & Name of the algorithm. \\
+\hline
+{\em pallets} & Number of pallets available. \\
+\hline
+{\em capacity} & Truck capacity. \\
+\hline
+{\em time\+\_\+ms} & Execution time in milliseconds. \\
+\hline
+{\em profit} & Maximum profit achieved. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{Main.cpp@{Main.cpp}!main@{main}}
+\index{main@{main}!Main.cpp@{Main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{_main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Main driver function for the Pallet Packing Optimization Tool. 
+
+Provides a console-\/based menu for\+:
+\begin{DoxyItemize}
+\item Loading input data.
+\item Running optimization algorithms\+: Brute-\/force, Backtracking, Dynamic Programming, Greedy Approximation, and ILP.
+\item Timing algorithm execution.
+\item Logging results to a CSV file.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+Exit status code. 
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<} Truck capacity
+
+\texorpdfstring{$<$}{<} Number of pallets
+
+\texorpdfstring{$<$}{<} List of available pallets

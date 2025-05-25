@@ -1,0 +1,85 @@
+\doxysection{State Struct Reference}
+\hypertarget{struct_state}{}\label{struct_state}\index{State@{State}}
+
+
+Represents a state used in dynamic programming solution.  
+
+
+
+
+{\ttfamily \#include $<$functions.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{struct_state_a04827418cf8fd791b7f7e7f9a1f23a55}{operator$<$}} (const \mbox{\hyperlink{struct_state}{State}} \&other) const
+\begin{DoxyCompactList}\small\item\em Comparison operator to compare two states. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_state_a3c2ceff37e019a85a2016910607a0b3b}{profit}}
+\item 
+int \mbox{\hyperlink{struct_state_a658250495926530fbe90298aaeab15d6}{weight}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{struct_state_aa6248d931a26c111187ee514ebb6e422}{pallets}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a state used in dynamic programming solution. 
+
+Stores the total profit, total weight, and the indices of pallets selected. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_state_a04827418cf8fd791b7f7e7f9a1f23a55}\index{State@{State}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!State@{State}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \label{struct_state_a04827418cf8fd791b7f7e7f9a1f23a55} 
+bool State\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_state}{State}} \&}]{other}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comparison operator to compare two states. 
+
+States are compared by\+:
+\begin{DoxyEnumerate}
+\item Profit (higher is better)
+\item Weight (lower is better)
+\item Number of pallets used (lower is better)
+\item Lexicographical order of pallet indices
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Another state to compare with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if this state is "{}less"{} than other, false otherwise 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_state_aa6248d931a26c111187ee514ebb6e422}\index{State@{State}!pallets@{pallets}}
+\index{pallets@{pallets}!State@{State}}
+\doxysubsubsection{\texorpdfstring{pallets}{pallets}}
+{\footnotesize\ttfamily \label{struct_state_aa6248d931a26c111187ee514ebb6e422} 
+std\+::vector$<$int$>$ State\+::pallets}
+
+Indices of pallets included in this state \Hypertarget{struct_state_a3c2ceff37e019a85a2016910607a0b3b}\index{State@{State}!profit@{profit}}
+\index{profit@{profit}!State@{State}}
+\doxysubsubsection{\texorpdfstring{profit}{profit}}
+{\footnotesize\ttfamily \label{struct_state_a3c2ceff37e019a85a2016910607a0b3b} 
+int State\+::profit}
+
+Total profit of selected pallets \Hypertarget{struct_state_a658250495926530fbe90298aaeab15d6}\index{State@{State}!weight@{weight}}
+\index{weight@{weight}!State@{State}}
+\doxysubsubsection{\texorpdfstring{weight}{weight}}
+{\footnotesize\ttfamily \label{struct_state_a658250495926530fbe90298aaeab15d6} 
+int State\+::weight}
+
+Total weight of selected pallets 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{functions_8h}{functions.\+h}}\end{DoxyCompactItemize}
